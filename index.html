@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            flex-wrap: wrap;
+            width: 960px;
+            height: 960px;
+            border: 2px solid black;
+        }
+        .element{
+            border: 0px solid yellow;
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <img  id = "btn" src="menu_FILL0_wght400_GRAD0_opsz48.svg">
+    <div class="container">
+    </div>
+    <script>
+
+let d=document.querySelector(".container");
+        function generateSketch(x){
+        for(let i =0;i<x*x;i++){
+        let elem=document.createElement('div');
+        elem.setAttribute("class","element");
+        elem.innerHTML=i;
+        let width=960/x;
+        let height=960/x;
+        elem.style.width=`${width}px`;
+        elem.style.height=`${height}px`;
+        d.appendChild(elem);}
+
+    let elem=document.getElementsByClassName("element");
+for(let i=0;i<elem.length;i++){
+    elem[i].addEventListener('mouseover',()=>{
+        let c1=Math.floor(Math.random()*256);
+        let c2=Math.floor(Math.random()*256);
+        let c3=Math.floor(Math.random()*256);
+        elem[i].style.backgroundColor=`rgb(${c1},${c2},${c3})`; //"rgb(155,102,102)";
+        console.log("Its working");
+    })
+}}
+generateSketch(16);
+let input=document.querySelector("#btn");
+input.addEventListener("click",()=>
+{
+    let p=prompt("Enter valid number");
+    d.replaceChildren();
+    generateSketch(p);
+})
+    </script>
+</body>
+</html>
